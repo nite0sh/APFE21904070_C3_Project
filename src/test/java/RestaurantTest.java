@@ -81,15 +81,28 @@ class RestaurantTest {
 
 
     @Test
-    public void check_calcualted_price () {
+    public void on_add_sweet_corn_soup_and_vegetable_lasagne_calculated_price_should_be_388 () {
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
         List<String> al = new ArrayList<String>();
         al.add("Sweet corn soup");
         al.add("Vegetable lasagne");
-        restaurant.CalculatePrice(al);
+        Integer calculatedPrice = restaurant.CalculatePrice(al);
+        assertThat(calculatedPrice,equalTo(388));
+    }
 
-
+    @Test
+    public void on_add_sweet_corn_soup_and_on_removing_vegetable_lasagne_calculated_price_should_be_199 () {
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        List<String> al = new ArrayList<String>();
+        al.add("Sweet corn soup");
+        al.add("Vegetable lasagne");
+        Integer calculatedPrice = restaurant.CalculatePrice(al);
+        assertThat(calculatedPrice,equalTo(388));
+        al.remove("Vegetable lasagne");
+        Integer calculatedPrice2 = restaurant.CalculatePrice(al);
+        assertThat(calculatedPrice2,equalTo(119));
 
     }
 }
